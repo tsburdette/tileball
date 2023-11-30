@@ -1,0 +1,114 @@
+[gd_scene load_steps=22 format=3 uid="uid://d2me26rhh0n3a"]
+
+[ext_resource type="Script" path="res://scripts/Pivot.gd" id="1_adr4x"]
+[ext_resource type="Texture2D" uid="uid://dgacyny4ju1r3" path="res://textures/squaretex.png" id="2_5cmyu"]
+[ext_resource type="Script" path="res://scripts/FloorGrid.gd" id="3_4cqw3"]
+[ext_resource type="PackedScene" uid="uid://dx1ftbc6k275w" path="res://scenes/cursor_scene.tscn" id="4_dmayp"]
+[ext_resource type="Script" path="res://scenes/cursor_scene.gd" id="5_piif2"]
+[ext_resource type="Script" path="res://scripts/TileText.gd" id="6_osvas"]
+[ext_resource type="PackedScene" uid="uid://cvedjnx6imrx5" path="res://scenes/character.tscn" id="7_bsnyu"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="8_g0w32"]
+
+[sub_resource type="Gradient" id="Gradient_b3c57"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rqgdd"]
+noise_type = 3
+frequency = 0.007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kipok"]
+color_ramp = SubResource("Gradient_b3c57")
+noise = SubResource("FastNoiseLite_rqgdd")
+
+[sub_resource type="Gradient" id="Gradient_x6p2h"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.555118)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uooik"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u8ajo"]
+as_normal_map = true
+color_ramp = SubResource("Gradient_x6p2h")
+noise = SubResource("FastNoiseLite_uooik")
+
+[sub_resource type="Gradient" id="Gradient_4o2ul"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ewcd5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xtn48"]
+color_ramp = SubResource("Gradient_4o2ul")
+noise = SubResource("FastNoiseLite_ewcd5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lanrw"]
+diffuse_mode = 1
+albedo_texture = ExtResource("2_5cmyu")
+normal_texture = SubResource("NoiseTexture2D_u8ajo")
+heightmap_scale = 16.0
+heightmap_texture = SubResource("NoiseTexture2D_kipok")
+subsurf_scatter_strength = 0.5
+subsurf_scatter_texture = SubResource("NoiseTexture2D_xtn48")
+backlight = Color(0.631373, 0.631373, 0.631373, 1)
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xomt3"]
+material = SubResource("StandardMaterial3D_lanrw")
+size = Vector2(20, 20)
+subdivide_width = 1
+subdivide_depth = 1
+orientation = 1
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7kvnx"]
+data = PackedVector3Array(10, 0, 10, 6.6667, 0, 10, 10, 0, 6.6667, 6.6667, 0, 10, 6.6667, 0, 6.6667, 10, 0, 6.6667, 6.6667, 0, 10, 3.3333, 0, 10, 6.6667, 0, 6.6667, 3.3333, 0, 10, 3.3333, 0, 6.6667, 6.6667, 0, 6.6667, 3.3333, 0, 10, 0, 0, 10, 3.3333, 0, 6.6667, 0, 0, 10, 0, 0, 6.6667, 3.3333, 0, 6.6667, 0, 0, 10, -3.3333, 0, 10, 0, 0, 6.6667, -3.3333, 0, 10, -3.3333, 0, 6.6667, 0, 0, 6.6667, -3.3333, 0, 10, -6.6667, 0, 10, -3.3333, 0, 6.6667, -6.6667, 0, 10, -6.6667, 0, 6.6667, -3.3333, 0, 6.6667, -6.6667, 0, 10, -10, 0, 10, -6.6667, 0, 6.6667, -10, 0, 10, -10, 0, 6.6667, -6.6667, 0, 6.6667, 10, 0, 6.6667, 6.6667, 0, 6.6667, 10, 0, 3.3333, 6.6667, 0, 6.6667, 6.6667, 0, 3.3333, 10, 0, 3.3333, 6.6667, 0, 6.6667, 3.3333, 0, 6.6667, 6.6667, 0, 3.3333, 3.3333, 0, 6.6667, 3.3333, 0, 3.3333, 6.6667, 0, 3.3333, 3.3333, 0, 6.6667, 0, 0, 6.6667, 3.3333, 0, 3.3333, 0, 0, 6.6667, 0, 0, 3.3333, 3.3333, 0, 3.3333, 0, 0, 6.6667, -3.3333, 0, 6.6667, 0, 0, 3.3333, -3.3333, 0, 6.6667, -3.3333, 0, 3.3333, 0, 0, 3.3333, -3.3333, 0, 6.6667, -6.6667, 0, 6.6667, -3.3333, 0, 3.3333, -6.6667, 0, 6.6667, -6.6667, 0, 3.3333, -3.3333, 0, 3.3333, -6.6667, 0, 6.6667, -10, 0, 6.6667, -6.6667, 0, 3.3333, -10, 0, 6.6667, -10, 0, 3.3333, -6.6667, 0, 3.3333, 10, 0, 3.3333, 6.6667, 0, 3.3333, 10, 0, 0, 6.6667, 0, 3.3333, 6.6667, 0, 0, 10, 0, 0, 6.6667, 0, 3.3333, 3.3333, 0, 3.3333, 6.6667, 0, 0, 3.3333, 0, 3.3333, 3.3333, 0, 0, 6.6667, 0, 0, 3.3333, 0, 3.3333, 0, 0, 3.3333, 3.3333, 0, 0, 0, 0, 3.3333, 0, 0, 0, 3.3333, 0, 0, 0, 0, 3.3333, -3.3333, 0, 3.3333, 0, 0, 0, -3.3333, 0, 3.3333, -3.3333, 0, 0, 0, 0, 0, -3.3333, 0, 3.3333, -6.6667, 0, 3.3333, -3.3333, 0, 0, -6.6667, 0, 3.3333, -6.6667, 0, 0, -3.3333, 0, 0, -6.6667, 0, 3.3333, -10, 0, 3.3333, -6.6667, 0, 0, -10, 0, 3.3333, -10, 0, 0, -6.6667, 0, 0, 10, 0, 0, 6.6667, 0, 0, 10, 0, -3.3333, 6.6667, 0, 0, 6.6667, 0, -3.3333, 10, 0, -3.3333, 6.6667, 0, 0, 3.3333, 0, 0, 6.6667, 0, -3.3333, 3.3333, 0, 0, 3.3333, 0, -3.3333, 6.6667, 0, -3.3333, 3.3333, 0, 0, 0, 0, 0, 3.3333, 0, -3.3333, 0, 0, 0, 0, 0, -3.3333, 3.3333, 0, -3.3333, 0, 0, 0, -3.3333, 0, 0, 0, 0, -3.3333, -3.3333, 0, 0, -3.3333, 0, -3.3333, 0, 0, -3.3333, -3.3333, 0, 0, -6.6667, 0, 0, -3.3333, 0, -3.3333, -6.6667, 0, 0, -6.6667, 0, -3.3333, -3.3333, 0, -3.3333, -6.6667, 0, 0, -10, 0, 0, -6.6667, 0, -3.3333, -10, 0, 0, -10, 0, -3.3333, -6.6667, 0, -3.3333, 10, 0, -3.3333, 6.6667, 0, -3.3333, 10, 0, -6.6667, 6.6667, 0, -3.3333, 6.6667, 0, -6.6667, 10, 0, -6.6667, 6.6667, 0, -3.3333, 3.3333, 0, -3.3333, 6.6667, 0, -6.6667, 3.3333, 0, -3.3333, 3.3333, 0, -6.6667, 6.6667, 0, -6.6667, 3.3333, 0, -3.3333, 0, 0, -3.3333, 3.3333, 0, -6.6667, 0, 0, -3.3333, 0, 0, -6.6667, 3.3333, 0, -6.6667, 0, 0, -3.3333, -3.3333, 0, -3.3333, 0, 0, -6.6667, -3.3333, 0, -3.3333, -3.3333, 0, -6.6667, 0, 0, -6.6667, -3.3333, 0, -3.3333, -6.6667, 0, -3.3333, -3.3333, 0, -6.6667, -6.6667, 0, -3.3333, -6.6667, 0, -6.6667, -3.3333, 0, -6.6667, -6.6667, 0, -3.3333, -10, 0, -3.3333, -6.6667, 0, -6.6667, -10, 0, -3.3333, -10, 0, -6.6667, -6.6667, 0, -6.6667, 10, 0, -6.6667, 6.6667, 0, -6.6667, 10, 0, -10, 6.6667, 0, -6.6667, 6.6667, 0, -10, 10, 0, -10, 6.6667, 0, -6.6667, 3.3333, 0, -6.6667, 6.6667, 0, -10, 3.3333, 0, -6.6667, 3.3333, 0, -10, 6.6667, 0, -10, 3.3333, 0, -6.6667, 0, 0, -6.6667, 3.3333, 0, -10, 0, 0, -6.6667, 0, 0, -10, 3.3333, 0, -10, 0, 0, -6.6667, -3.3333, 0, -6.6667, 0, 0, -10, -3.3333, 0, -6.6667, -3.3333, 0, -10, 0, 0, -10, -3.3333, 0, -6.6667, -6.6667, 0, -6.6667, -3.3333, 0, -10, -6.6667, 0, -6.6667, -6.6667, 0, -10, -3.3333, 0, -10, -6.6667, 0, -6.6667, -10, 0, -6.6667, -6.6667, 0, -10, -10, 0, -6.6667, -10, 0, -10, -6.6667, 0, -10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ph0yp"]
+font_size = 32
+
+[node name="Level" type="Node3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+script = ExtResource("1_adr4x")
+
+[node name="Main Camera" type="Camera3D" parent="Pivot"]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 30, 30, 30)
+projection = 1
+size = 25.0
+far = 1000.0
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.73855, 0.476731, 0.476731, -0.674199, 0.522233, 0.522233, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_xomt3")
+
+[node name="FloorBody" type="StaticBody3D" parent="Floor"]
+
+[node name="FloorCollider" type="CollisionShape3D" parent="Floor/FloorBody"]
+shape = SubResource("ConcavePolygonShape3D_7kvnx")
+
+[node name="FloorGrid" type="GridMap" parent="."]
+cell_size = Vector3(1, 1, 1)
+script = ExtResource("3_4cqw3")
+
+[node name="Character" parent="." instance=ExtResource("7_bsnyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+script = ExtResource("8_g0w32")
+
+[node name="Cursor Scene" parent="." instance=ExtResource("4_dmayp")]
+script = ExtResource("5_piif2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TileText" type="Label" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 35.0
+offset_right = 82.0
+offset_bottom = 80.0
+label_settings = SubResource("LabelSettings_ph0yp")
+script = ExtResource("6_osvas")
+
+[connection signal="input_event" from="Floor/FloorBody" to="FloorGrid" method="_on_floor_body_input_event"]
+[connection signal="mouse_exited" from="Floor/FloorBody" to="Cursor Scene" method="_on_floor_body_mouse_exited"]
+[connection signal="mouse_exited" from="Floor/FloorBody" to="CanvasLayer/TileText" method="_on_floor_body_mouse_exited"]
+[connection signal="floor_grid_click" from="FloorGrid" to="Cursor Scene" method="_on_floor_grid_floor_grid_click"]
+[connection signal="floor_grid_hover" from="FloorGrid" to="Cursor Scene" method="_on_floor_grid_floor_grid_hover"]
+[connection signal="floor_grid_hover" from="FloorGrid" to="CanvasLayer/TileText" method="_on_floor_grid_floor_grid_hover"]
+[connection signal="mouse_over" from="Character" to="CanvasLayer/TileText" method="_on_character_mouse_over"]

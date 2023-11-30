@@ -18,8 +18,7 @@ func _process(delta):
 		mouse_over_grid.emit(intersect_dict)
 	if Input.is_action_just_pressed("left_click"):
 		mouse_down.emit(intersect_dict)
-	else:
-		clear_cursor.emit()
+	clear_cursor.emit()
 
 func check_for_mouseover():
 	var camera = get_viewport().get_camera_3d()

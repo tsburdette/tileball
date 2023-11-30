@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bep7cy8n0dexa"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_dlyoq"]
-[ext_resource type="MeshLibrary" uid="uid://c4a067u1h7ru1" path="res://scenes/mesh_library/level_proto_library.tres" id="2_30mko"]
+[ext_resource type="MeshLibrary" uid="uid://c4a067u1h7ru1" path="res://level_proto_library.tres" id="2_30mko"]
 [ext_resource type="Script" path="res://scripts/GridMap.gd" id="3_n4n4f"]
 [ext_resource type="Script" path="res://scripts/Pivot.gd" id="4_fmoja"]
 [ext_resource type="PackedScene" uid="uid://dx1ftbc6k275w" path="res://scenes/cursor_scene.tscn" id="5_a0fbe"]
