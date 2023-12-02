@@ -21,3 +21,7 @@ func _on_floor_body_mouse_exited():
 
 func _on_character_mouse_over():
 	text = 'Character!'
+
+
+func _on_static_body_3d_mouse_exited():
+	text = ''

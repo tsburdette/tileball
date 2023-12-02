@@ -18,3 +18,7 @@ func _on_floor_grid_floor_grid_hover(map_position):
 
 func _on_floor_body_mouse_exited():
 	visible = false
+
+
+func _on_static_body_3d_mouse_exited():
+	visible = false

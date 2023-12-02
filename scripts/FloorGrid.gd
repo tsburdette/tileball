@@ -15,7 +15,18 @@ func _process(delta):
 
 func _on_floor_body_input_event(camera, event, position, normal, shape_idx):
 	# sometimes the intersection can happen just past the collider
-	position.y = max(position.y, 0)
+	position.y = round(position.y)
+	var grid_position = local_to_map(position)
+	var grid_to_world_pos = map_to_local(grid_position)
+	if (event is InputEventMouseMotion):
+		floor_grid_hover.emit(grid_to_world_pos)
+	elif (event is InputEventMouseButton):
+		floor_grid_click.emit(grid_to_world_pos)
+
+
+func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
+	# sometimes the intersection can happen just past the collider
+	position.y = round(position.y)
 	var grid_position = local_to_map(position)
 	var grid_to_world_pos = map_to_local(grid_position)
 	if (event is InputEventMouseMotion):
