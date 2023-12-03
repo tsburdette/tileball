@@ -1,5 +1,6 @@
-extends Label
+extends State
 
+class_name MoveState
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,15 +10,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-
-func _on_floor_grid_floor_grid_hover(map_position):
-	text = str(map_position)
-
-
-func _on_floor_body_mouse_exited():
-	text = ''
-
-
-func _on_static_body_3d_mouse_exited():
-	text = ''

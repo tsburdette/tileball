@@ -124,14 +124,14 @@ transform = Transform3D(0.73855, 0.47673, 0.476731, -0.674199, 0.522233, 0.52223
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3.5)
 script = ExtResource("6_ibbne")
 
-[node name="CharacterMesh" type="MeshInstance3D" parent="Entities/Character"]
+[node name="Cube" type="MeshInstance3D" parent="Entities/Character"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_s2q7i")
 skeleton = NodePath("../../..")
 
-[node name="CharacterBody" type="StaticBody3D" parent="Entities/Character/CharacterMesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Entities/Character/Cube"]
 
-[node name="CharacterShape" type="CollisionShape3D" parent="Entities/Character/CharacterMesh/CharacterBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/Character/Cube/StaticBody3D"]
 shape = SubResource("BoxShape3D_thsts")
 
 [node name="Master Grid" type="GridMap" parent="."]
@@ -142,8 +142,8 @@ script = ExtResource("7_g7eqt")
 [connection signal="mouse_exited" from="Evironment/map-with-height/Cube_001/StaticBody3D" to="UI/CanvasLayer/Coordinates" method="_on_static_body_3d_mouse_exited"]
 [connection signal="mouse_exited" from="Evironment/map-with-height/Cube_001/StaticBody3D" to="UI/Cursor Scene" method="_on_static_body_3d_mouse_exited"]
 [connection signal="mouse_over" from="Entities/Character" to="UI/CanvasLayer/Character Status" method="_on_character_mouse_over"]
-[connection signal="input_event" from="Entities/Character/CharacterMesh/CharacterBody" to="Entities/Character" method="_on_static_body_3d_input_event"]
-[connection signal="mouse_exited" from="Entities/Character/CharacterMesh/CharacterBody" to="UI/CanvasLayer/Character Status" method="_on_static_body_3d_mouse_exited"]
+[connection signal="input_event" from="Entities/Character/Cube/StaticBody3D" to="Entities/Character" method="_on_static_body_3d_input_event"]
+[connection signal="mouse_exited" from="Entities/Character/Cube/StaticBody3D" to="UI/CanvasLayer/Character Status" method="_on_static_body_3d_mouse_exited"]
 [connection signal="floor_grid_click" from="Master Grid" to="UI/Cursor Scene" method="_on_floor_grid_floor_grid_click"]
 [connection signal="floor_grid_hover" from="Master Grid" to="UI/CanvasLayer/Coordinates" method="_on_floor_grid_floor_grid_hover"]
 [connection signal="floor_grid_hover" from="Master Grid" to="UI/Cursor Scene" method="_on_floor_grid_floor_grid_hover"]
